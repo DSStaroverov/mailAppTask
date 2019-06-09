@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name = "folders")
+@Table(name = "folders",uniqueConstraints = {@UniqueConstraint(columnNames = {"name","email_id"}, name = "folders_unique_idx")})
 public class Folder extends AbstractBaseEntity {
 
     @JoinColumn(name = "name")
@@ -17,7 +17,7 @@ public class Folder extends AbstractBaseEntity {
     private Email email;
 
     @OneToMany(mappedBy = "folder", fetch = FetchType.LAZY)
-    @OrderBy("send_time DESC")
+    @OrderBy("sendTime DESC")
     private List<Letter> letters;
 
     public Folder() {
