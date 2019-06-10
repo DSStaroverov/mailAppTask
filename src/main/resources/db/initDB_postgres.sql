@@ -18,7 +18,8 @@ CREATE TABLE users
   enabled          BOOLEAN DEFAULT TRUE    NOT NULL,
   first_name       VARCHAR(255)            NOT NULL,
   last_name        VARCHAR(255)            NOT NULL,
-  birthday         TIMESTAMP DEFAULT now() NOT NULL
+  birthday         TIMESTAMP DEFAULT now() NOT NULL,
+  phone_number     VARCHAR(13)
 );
 
 CREATE TABLE user_roles

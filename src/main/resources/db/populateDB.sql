@@ -7,9 +7,9 @@ DELETE FROM users;
 
 ALTER SEQUENCE global_seq RESTART WITH 100000;
 
-INSERT INTO users (login, password, first_name, last_name) VALUES
-  ('User', '{noop}password','user','first'), --100000
-  ('User2', '{noop}password','user2','second'); --100001
+INSERT INTO users (login, password, first_name, last_name, phone_number) VALUES
+  ('user', '{noop}password','user','first', '8(921)1234567'), --100000
+  ('user2', '{noop}password','user2','second', '8(911)1234577'); --100001
 
 INSERT INTO user_roles (role, user_id) VALUES
   ('ROLE_USER', 100000),

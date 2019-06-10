@@ -2,21 +2,18 @@ package ru.dsstaroverov.mailApp.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.Set;
 
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "login", name = "users_unique_login_idx")})
@@ -54,9 +51,11 @@ public class User extends AbstractBaseEntity {
 
     @Column(name = "birthday", nullable = false, columnDefinition = "timestamp default now()")
     @NotNull
-    private Date birthday;
+    private LocalDate birthday;
 
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
@@ -70,14 +69,14 @@ public class User extends AbstractBaseEntity {
     }
 
     public User(User u) {
-        this(u.getId(), u.getLogin(), u.getPassword(), u.isEnabled(), u.getRegistered(),u.getFirstName(),u.getLastName(),u.getBirthday(), u.getRoles());
+        this(u.getId(), u.getLogin(), u.getPassword(), u.isEnabled(), u.getRegistered(),u.getFirstName(),u.getLastName(),u.getBirthday(),u.getPhoneNumber(), u.getRoles());
     }
 
-    public User(Integer id,  String login, String password, Role role,String firstName, String lastName, Date birthday,Role... roles) {
-        this(id, login, password, true, new Date(),firstName,lastName,birthday, EnumSet.of(role, roles));
+    public User(Integer id, String login, String password,String firstName, String lastName, LocalDate birthday,String phone, Role role, Role... roles) {
+        this(id, login, password, true, new Date(),firstName,lastName,birthday,phone, EnumSet.of(role, roles));
     }
 
-    public User(Integer id, String login, String password, boolean enabled, Date registered, String firstName, String lastName, Date birthday, Collection<Role> roles) {
+    public User(Integer id, String login, String password, boolean enabled, Date registered, String firstName, String lastName, LocalDate birthday, String phone, Collection<Role> roles) {
         super(id);
         this.login = login;
         this.password = password;
@@ -86,6 +85,7 @@ public class User extends AbstractBaseEntity {
         this.firstName=firstName;
         this.lastName=lastName;
         this.birthday=birthday;
+        this.phoneNumber=phone;
         setRoles(roles);
     }
 
@@ -146,12 +146,20 @@ public class User extends AbstractBaseEntity {
         this.lastName = lastName;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
