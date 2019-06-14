@@ -22,18 +22,18 @@ public class SecurityUtil {
         return (principal instanceof AuthorizedUser) ? (AuthorizedUser) principal : null;
     }
 
-    public static AuthorizedUser get() {
+    public static AuthorizedUser getAuthUser() {
         AuthorizedUser user = safeGet();
         requireNonNull(user, "No authorized user found");
         return user;
     }
 
     public static int authUserId() {
-        return get().getId();
+        return getAuthUser().getId();
     }
 
     public static boolean isAdmin(){
-        return get().getAuthorities().contains(Role.ROLE_ADMIN);
+        return getAuthUser().getAuthorities().contains(Role.ROLE_ADMIN);
     }
 
 }

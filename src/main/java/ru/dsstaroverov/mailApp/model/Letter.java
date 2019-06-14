@@ -21,8 +21,8 @@ public class Letter extends AbstractBaseEntity{
     @JoinColumn(name = "folder_id")
     private Folder folder;
 
-    @Column(name = "send_time")
-    private LocalDateTime sendTime;
+    @Column(name = "send_time",nullable = false, columnDefinition = "timestamp default now()")
+    private LocalDateTime sendTime = LocalDateTime.now();
 
     @Column(name = "title")
     private String title;
@@ -33,6 +33,9 @@ public class Letter extends AbstractBaseEntity{
     public Letter() {
     }
 
+    public Letter(Letter letter){
+        this(letter.getId(),letter.getSender(),letter.getRecipient(),letter.getFolder(),letter.getSendTime(),letter.getTitle(),letter.getMessage());
+    }
     public Letter(Email sender, Email recipient, String title, String message) {
         this(sender,recipient,null,title,message);
     }

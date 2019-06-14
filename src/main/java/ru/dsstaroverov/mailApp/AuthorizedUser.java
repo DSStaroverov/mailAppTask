@@ -2,6 +2,7 @@ package ru.dsstaroverov.mailApp;
 
 
 import ru.dsstaroverov.mailApp.model.Email;
+import ru.dsstaroverov.mailApp.model.Folder;
 import ru.dsstaroverov.mailApp.model.User;
 import ru.dsstaroverov.mailApp.to.UserTo;
 import ru.dsstaroverov.mailApp.util.UserUtil;
@@ -12,6 +13,8 @@ public class AuthorizedUser extends org.springframework.security.core.userdetail
     private UserTo userTo;
 
     private Email currentEmail;
+
+    private Folder currentFolder;
 
     public AuthorizedUser(User user) {
         super(user.getLogin(), user.getPassword(), user.isEnabled(), true, true, true, user.getRoles());
@@ -36,6 +39,14 @@ public class AuthorizedUser extends org.springframework.security.core.userdetail
 
     public void setCurrentEmail(Email currentEmail) {
         this.currentEmail = currentEmail;
+    }
+
+    public Folder getCurrentFolder() {
+        return currentFolder;
+    }
+
+    public void setCurrentFolder(Folder currentFolder) {
+        this.currentFolder = currentFolder;
     }
 
     @Override

@@ -7,7 +7,7 @@
     <div class="container">
         <sec:authorize access="isAuthenticated()">
             <form:form class="form-inline my-2" action="logout" method="post">
-                <a class="btn btn-info mr-1" href="profile">${user.firstName} ${user.lastName}</a>
+                <a class="btn btn-info mr-1" href="profile">${userTo.firstName} ${userTo.lastName}</a>
                 <button class="btn btn-primary" type="submit">
                     <span class="fa fa-sign-out"></span>
                 </button>

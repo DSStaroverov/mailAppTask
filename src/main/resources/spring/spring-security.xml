@@ -11,7 +11,6 @@
     <http>
         <intercept-url pattern="/login" access="permitAll()"/>
         <intercept-url pattern="/register" access="isAnonymous()"/>
-        <!--<intercept-url pattern="/profile" access="isAnonymous()"/>-->
 
         <intercept-url pattern="/**" access="isAuthenticated()"/>
 
@@ -19,7 +18,7 @@
                     authentication-failure-url="/login?error=true"
                     login-processing-url="/spring_security_check"/>
         <logout logout-success-url="/login"/>
-        <!--<csrf disabled="true"/>-->
+        <csrf disabled="true"/>
     </http>
 
 

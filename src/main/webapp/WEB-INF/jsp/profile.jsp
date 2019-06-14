@@ -14,16 +14,16 @@
         <%--@elvariable id="userTo" type="ru.dsstaroverov.mailApp.to.UserTo"--%>
         <div class="row">
             <div class="col-5 offset-3">
-                <h3>register</h3>
+                <h3>${userTo.firstName} <spring:message code="${register ? 'app.register' : 'app.profile'}"/></h3>
                 <form:form class="form-group" modelAttribute="userTo" method="post" action="${register ? 'register' : 'profile'}"
                            charset="utf-8" accept-charset="UTF-8">
 
-                    <mailApp:inputField labelCode="firstName" name="firstName"/>
-                    <mailApp:inputField labelCode="lastName" name="lastName"/>
-                    <mailApp:inputField labelCode="login" name="login"/>
-                    <mailApp:inputField labelCode="password" name="password" inputType="password"/>
+                    <mailApp:inputField labelCode="firstName 2-100 symbols" name="firstName"/>
+                    <mailApp:inputField labelCode="lastName 2-100 symbols" name="lastName"/>
+                    <mailApp:inputField labelCode="login 4-100 symbols" name="login"/>
+                    <mailApp:inputField labelCode="password 5-100 symbols" name="password" inputType="password"/>
                     <mailApp:inputField labelCode="birthday" name="birthday" inputType="date"/>
-                    <mailApp:inputField labelCode="phoneNumber" name="phoneNumber"/>
+                    <mailApp:inputField labelCode="phoneNumber x(xxx)xxxxxxx" name="phoneNumber"/>
 
                     <div class="text-right">
                         <a class="btn btn-secondary" href="#" onclick="window.history.back()">

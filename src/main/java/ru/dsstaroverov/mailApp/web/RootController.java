@@ -13,14 +13,16 @@ import ru.dsstaroverov.mailApp.web.user.AbstractUserController;
 
 import javax.validation.Valid;
 
+import static ru.dsstaroverov.mailApp.web.SecurityUtil.getAuthUser;
+
 @Controller
 public class RootController extends AbstractUserController {
 
-    /*@GetMapping("/")
+    @GetMapping("/")
     public String root() {
-        return "redirect:meals";
+        return "redirect:email";
     }
-*/
+
 //    @Secured("ROLE_ADMIN")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/users")
@@ -34,8 +36,18 @@ public class RootController extends AbstractUserController {
     }
 
     @GetMapping("/email")
-    public String meals() {
+    public String email() {
         return "email";
+    }
+
+    @GetMapping("/folder")
+    public String folder() {
+        return "folder";
+    }
+
+    @GetMapping("/letter")
+    public String letter() {
+        return "letter";
     }
 
     @GetMapping("/profile")
@@ -49,7 +61,7 @@ public class RootController extends AbstractUserController {
             return "profile";
         } else {
             super.update(userTo, SecurityUtil.authUserId());
-            SecurityUtil.get().update(userTo);
+            getAuthUser().update(userTo);
             status.setComplete();
             return "redirect:email";
         }

@@ -21,7 +21,7 @@ public class User extends AbstractBaseEntity {
     
     @Column(name = "login", nullable = false, unique = true)
     @NotBlank
-    @Size(min = 5, max = 100)
+    @Size(min = 4, max = 100)
     private String login;
 
     @Column(name = "password", nullable = false)

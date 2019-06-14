@@ -36,7 +36,7 @@ public abstract class AbstractUserController {
             checkNew(user);
             return service.create(user);
         }catch (DataIntegrityViolationException e){
-            throw new IllegalRequestDataException("email dublicate create");
+            throw new IllegalRequestDataException("login dublicate create");
         }
     }
 
@@ -51,7 +51,7 @@ public abstract class AbstractUserController {
             assureIdConsistent(user, id);
             service.update(user);
         }catch (DataIntegrityViolationException e){
-            throw new IllegalRequestDataException("email dublicate update");
+            throw new IllegalRequestDataException("login dublicate update");
         }
     }
 
