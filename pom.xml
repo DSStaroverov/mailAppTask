@@ -19,6 +19,7 @@
 
         <spring.version>5.1.4.RELEASE</spring.version>
         <spring-data-jpa.version>2.1.5.RELEASE</spring-data-jpa.version>
+        <tomcat.version>9.0.16</tomcat.version>
 
         <jackson-json.version>2.9.8</jackson-json.version>
 
@@ -200,6 +201,18 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+
+        <!--Tomcat-->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jdbc</artifactId>
+            <version>${tomcat.version}</version>
         </dependency>
 
         <!-- Webjars (static dependencies distributed as JAR files) -->
